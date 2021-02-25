@@ -38,7 +38,7 @@ func (s *app) Mount() {
 }
 
 func (s *app) AddMiddleware() {
-
+	s.router.Use(mux.CORSMethodMiddleware(s.router))
 }
 
 func (s *app) ListenAndServe(cfg viper.Viper) {
