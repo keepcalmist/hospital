@@ -29,6 +29,7 @@ func InitApp(cfg viper.Viper) *app {
 	}
 
 	app.router = mux.NewRouter()
+	return app
 }
 
 func (s *app) Mount() {
@@ -53,4 +54,8 @@ func (s *app) ListenAndServe(cfg viper.Viper) {
 		}
 	}()
 	<-s.quit
+}
+
+func (s *app) AddRoute(path string, router *mux.Router) error {
+	s.routing[path] = router
 }
